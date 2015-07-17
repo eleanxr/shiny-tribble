@@ -7,7 +7,9 @@
 
       "sources": [
         "grid.hpp",
-	"grid.cpp"
+	"grid.cpp",
+	"heat.hpp",
+	"heat.cpp"
       ],
 
       "include_dirs": [
