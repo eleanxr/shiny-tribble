@@ -6,22 +6,22 @@
       "type": "static_library",
 
       "sources": [
-        "grid.hpp",
-	"grid.cpp",
-	"heat.hpp",
-	"heat.cpp"
+        "include/gs/grid.hpp",
+	"src/gs/grid.cpp",
+	"include/gs/heat.hpp",
+	"src/gs/heat.cpp"
       ],
 
       "include_dirs": [
-        "."
+        "include"
       ]
     },
 
     {
       "target_name": "gridsolve",
       "type": "executable",
-      "sources": [ "main.cpp" ],
-      "include_dirs": [ "." ],
+      "sources": [ "bin/main.cpp" ],
+      "include_dirs": [ "include" ],
       "dependencies": [ "gs" ]
     }
   ]

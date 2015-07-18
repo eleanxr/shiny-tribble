@@ -1,9 +1,12 @@
+#include <gs/heat.hpp>
 
 #include <algorithm>
 #include <iostream>
 #include <vector>
 #include <iterator>
 #include <fstream>
+
+namespace gs {
 
 void solve_heat(double t, double dt, double x, double dx) {
   const std::size_t x_length = std::size_t(x / dx);
@@ -46,3 +49,5 @@ void solve_heat(double t, double dt, double x, double dx) {
     std::copy(u.begin(), u.end(), u_old.begin());
   }
 }
+
+} // namespace gs
