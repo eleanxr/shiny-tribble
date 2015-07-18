@@ -38,7 +38,7 @@ void solve_heat(double t, double dt, double x, double dx) {
     }
 
     // Save current step
-    std::ostream_iterator<double> out_it(out, ", ");
+    std::ostream_iterator<double> out_it(out, " ");
     std::copy(u.begin(), u.end(), out_it);
     out << std::endl;
     
