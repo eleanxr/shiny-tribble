@@ -8,7 +8,7 @@
 
 namespace gs {
 
-void solve_heat(double t, double dt, double x, double dx) {
+void solve_heat(double t, double dt, double x, double dx, const pde_operator& op) {
   const std::size_t x_length = std::size_t(x / dx);
   
   std::vector<double> u_old(x_length);
@@ -16,16 +16,12 @@ void solve_heat(double t, double dt, double x, double dx) {
 
   // Boundary conditions
   u_old[0] = 1.0;
-  u_old[u_old.size() - 1] = -1.0;
+  u_old[u_old.size() - 1] = 1.0;
   u[0] = 1.0;
-  u[u.size() - 1] = -1.0;
+  u[u.size() - 1] = 1.0;
   
   // Initial conditions.
   std::fill(u_old.begin() + 1, u_old.end() - 1, 0.0);
-
-  // Fixed values
-  const double coeff = dt / (dx * dx);
-  const double alpha = 1.0;
 
   // Simple text output for now
   std::ofstream out("out.dat");
@@ -36,8 +32,7 @@ void solve_heat(double t, double dt, double x, double dx) {
 
     // Space
     for (std::size_t x = 1; x < u.size() - 1; x++) {
-      u[x] = u_old[x] + alpha * coeff *
-	(u_old[x + 1] - 2 * u_old[x] + u_old[x - 1]);
+        u[x] = op.apply(x, u_old);
     }
 
     // Save current step
